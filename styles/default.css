@@ -1,0 +1,95 @@
+:root {
+    --solarized-base03:    #002b36;
+    --solarized-base02:    #073642;
+    --solarized-base01:    #586e75;
+    --solarized-base00:    #657b83;
+    --solarized-base0:     #839496;
+    --solarized-base1:     #93a1a1;
+    --solarized-base2:     #eee8d5;
+    --solarized-base3:     #fdf6e3;
+    --solarized-yellow:    #b58900;
+    --solarized-orange:    #cb4b16;
+    --solarized-red:       #dc322f;
+    --solarized-magenta:   #d33682;
+    --solarized-violet:    #6c71c4;
+    --solarized-blue:      #268bd2;
+    --solarized-cyan:      #2aa198;
+    --solarized-green:     #859900;
+}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html, body {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    background: var(--solarized-base03);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+li {
+    display: flex;
+}
+
+.header-nav ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding-left: 1em;
+    padding-top: .5em;
+    background-color: var(--solarized-base3);
+}
+
+.nav-link {
+    align-items: flex-end;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    padding: 0 4px;
+    color: var(--solarized-base03);
+}
+
+.nav-link a{
+    color: inherit;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}                  
+
+.nav-link.live {
+    margin-left: auto;
+    margin-right: 1em;
+}
+
+.current-page {
+    color: var(--solarized-base3);
+    background-color: var(--solarized-base03);
+}
+
+.live a::before {
+    margin-right: .2em;
+    content: ' ';
+	width: 16px;
+	height: 16px;
+	background: red;
+	border-radius: 50%;
+}
+
