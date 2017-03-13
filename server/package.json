@@ -9,6 +9,9 @@
   "author": "Mark Halls",
   "license": "ISC",
   "dependencies": {
+    "musicmetadata": "^2.0.5",
+    "node-dir": "^0.1.16",
+    "sqlite": "^2.3.0",
     "tmi.js": "^1.1.2"
   }
 }
