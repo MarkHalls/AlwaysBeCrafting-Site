@@ -38,7 +38,7 @@ html, body {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    background: var(--solarized-base03);
+    background: var(--solarized-base2);
 }
 
 ul, ol {
