@@ -15,25 +15,30 @@
     </nav> 
 </header>
 <div>
-    <audio src="http://localhost:3000">Your browser does not support the <code>audio</code> element.</audio>
+    <p class="audio-json"></p>
+    <audio class="audio" src="http://localhost:3000/songs/">Your browser does not support the <code>audio</code> element.</audio>
+    <img class="album-art" src="http://localhost:3000/tracks/id/picture" />
     <ol class="player-menu">
-        <li><button id="previous" class="player-buttons"><svg xmlns="http://www.w3.org/2000/svg" class="player-icons" width="32" height="32" viewBox="0 0 8.4666659 8.4666659">
+        <li><button class="player-buttons previous"><svg xmlns="http://www.w3.org/2000/svg" class="player-icons" width="32" height="32" viewBox="0 0 8.4666659 8.4666659">
                 <g fill-rule="evenodd">
                 <path d="M4.23 6.35V2.12l-3.17 2.1zM4.23 4.23L7.4 6.35V2.12z"/>
                 </g>
             </svg></li>
-        <li><button id="play" class="player-buttons"><svg xmlns="http://www.w3.org/2000/svg" class="player-icons" width="32" height="32" viewBox="0 0 8.4666659 8.4666659">
+        <li><button class="player-buttons play"><svg xmlns="http://www.w3.org/2000/svg" class="player-icons" width="32" height="32" viewBox="0 0 8.4666659 8.4666659">
                 <path fill-rule="evenodd" d="M1.06 1.06L7.4 4.23 1.07 7.4z"/>
             </svg></li>
-        <li><button id="pause" class="player-buttons"><svg xmlns="http://www.w3.org/2000/svg" class="player-icons" width="32" height="32" viewBox="0 0 8.4666659 8.4666659">
+        <li><button class="player-buttons pause"><svg xmlns="http://www.w3.org/2000/svg" class="player-icons" width="32" height="32" viewBox="0 0 8.4666659 8.4666659">
                 <path d="M2.12 1.06h1.06V7.4H2.12zM5.3 1.06h1.05V7.4H5.3z"/>
             </svg></li>
-        <li><button id="next" class="player-buttons"><svg xmlns="http://www.w3.org/2000/svg" class="player-icons" width="32" height="32" viewBox="0 0 8.4666659 8.4666659">
+        <li><button class="player-buttons next"><svg xmlns="http://www.w3.org/2000/svg" class="player-icons" width="32" height="32" viewBox="0 0 8.4666659 8.4666659">
                 <g fill-rule="evenodd">
                 <path d="M4.23 2.12v4.23L7.4 4.23zM4.23 4.23l-3.17-2.1v4.22z"/>
                 </g>
             </svg></li>
     </ol>
 </div>
+<script type="text/javascript" src="oauth.json"></script>
+<script src="https://cdn.tmijs.org/js/1.1.2/tmi.min.js" integrity="sha384-GONdkSqsv77zHY1cs3aAZoQJP/9wq2YBmES4prk2ZG1rUvrv3IKLFRbHqk/0CR1b" crossorigin="anonymous"></script>
+<script src="./js/chat.js"></script>
 <script src="./js/player.js"></script>
 
