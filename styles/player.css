@@ -5,20 +5,32 @@
     --blue-materialdesign-A200: #FF6E40;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center ;
+    justify-content: center;
+    list-style: none;
 }
+
 
 .player-buttons {
     background-color: var(--cyan-materialdesign-50);
+    border: 0;
+    padding: 0;
 }
 
 .player-buttons:active {
-    background-color: var(--blue-materialdesign-A200);
+    background-color: var(--cyan-materialdesign-500);
+}
+
+.player-buttons:focus {
+    outline: none;
 }
 
 .player-icons, .player-icons path{
     width: 32px;
     height: 32px;
     stroke-width: 1px;
+    stroke: var(--cyan-materialdesign-800);
+}
+
+.player-buttons.active path {
     stroke: var(--blue-materialdesign-A200);
 }
