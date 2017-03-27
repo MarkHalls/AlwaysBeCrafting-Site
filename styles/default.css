@@ -1,20 +1,8 @@
 :root {
-    --solarized-base03:    #002b36;
-    --solarized-base02:    #073642;
-    --solarized-base01:    #586e75;
-    --solarized-base00:    #657b83;
-    --solarized-base0:     #839496;
-    --solarized-base1:     #93a1a1;
-    --solarized-base2:     #eee8d5;
-    --solarized-base3:     #fdf6e3;
-    --solarized-yellow:    #b58900;
-    --solarized-orange:    #cb4b16;
-    --solarized-red:       #dc322f;
-    --solarized-magenta:   #d33682;
-    --solarized-violet:    #6c71c4;
-    --solarized-blue:      #268bd2;
-    --solarized-cyan:      #2aa198;
-    --solarized-green:     #859900;
+    --cyan-materialdesign-500:  #00BCD4;
+    --cyan-materialdesign-50:   #E0F7FA;
+    --cyan-materialdesign-800:  #00838F;   
+    --blue-materialdesign-A200: #FF6E40;
 }
 
 html, body, div, span, object, iframe,
@@ -25,7 +13,7 @@ fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, main {
   margin: 0;
   padding: 0;
   border: 0;
@@ -38,7 +26,7 @@ html, body {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    background: var(--solarized-base2);
+    background: var(--cyan-materialdesign-50);
 }
 
 ul, ol {
@@ -56,7 +44,7 @@ li {
     align-content: flex-start;
     padding-left: 1em;
     padding-top: .5em;
-    background-color: var(--solarized-base3);
+    background-color: var(--cyan-materialdesign-500);
 }
 
 .nav-link {
@@ -64,14 +52,14 @@ li {
     font-family: 'Roboto', sans-serif;
     font-size: 2em;
     padding: 0 4px;
-    color: var(--solarized-base03);
 }
 
 .nav-link a{
-    color: inherit;
     display: flex;
     align-items: center;
     text-decoration: none;
+    color: rgba(0,0,0,0.6);
+    /*color: var(--blue-materialdesign-A200);*/
 }                  
 
 .nav-link.live {
@@ -79,9 +67,8 @@ li {
     margin-right: 1em;
 }
 
-.current-page {
-    color: var(--solarized-base3);
-    background-color: var(--solarized-base03);
+.current-page a {
+    color: black;
 }
 
 .live a::before {
@@ -92,4 +79,3 @@ li {
 	background: red;
 	border-radius: 50%;
 }
-

@@ -48,11 +48,13 @@ client.on('message', (channel, user, message, self) => {
     switch (parsedMessage[0]) {
         case '!veto':
             console.log("Veto SUCCESS!!");
+            voteLog = [...voteLog, {trackid, downvote}];
             next();
 
             break;
         case '!request':
             console.log("Request SUCCESS!!");
+            voteLog = [...voteLog, {trackid, upvote}];
             break;
         default:
             break;

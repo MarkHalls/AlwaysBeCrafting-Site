@@ -1,40 +1,24 @@
-
 .player-menu {
-    --solarized-base03:    #002b36;
-    --solarized-base02:    #073642;
-    --solarized-base01:    #586e75;
-    --solarized-base00:    #657b83;
-    --solarized-base0:     #839496;
-    --solarized-base1:     #93a1a1;
-    --solarized-base2:     #eee8d5;
-    --solarized-base3:     #fdf6e3;
-    --solarized-yellow:    #b58900;
-    --solarized-orange:    #cb4b16;
-    --solarized-red:       #dc322f;
-    --solarized-magenta:   #d33682;
-    --solarized-violet:    #6c71c4;
-    --solarized-blue:      #268bd2;
-    --solarized-cyan:      #2aa198;
-    --solarized-green:     #859900;
-
+    --cyan-materialdesign-500:  #00BCD4;
+    --cyan-materialdesign-50:   #E0F7FA;
+    --cyan-materialdesign-800:  #00838F;   
+    --blue-materialdesign-A200: #FF6E40;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center ;
 }
 
 .player-buttons {
-    background-color: var(--solarized-base3);
+    background-color: var(--cyan-materialdesign-50);
 }
 
 .player-buttons:active {
-    background-color: var(--solarized-cyan);
-    outline: none;
+    background-color: var(--blue-materialdesign-A200);
 }
 
-.player-icons {
-    fill: var(--solarized-base03)
-}
-
-.player-buttons.active {
-    background-color: var(--solarized-cyan);
+.player-icons, .player-icons path{
+    width: 32px;
+    height: 32px;
+    stroke-width: 1px;
+    stroke: var(--blue-materialdesign-A200);
 }
