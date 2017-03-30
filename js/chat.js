@@ -1,5 +1,5 @@
 const oauth = () => JSON.parse(token);
-const identity = oauth();
+const id = oauth();
 
 let chatLog = [];
 let voteLog = [];
@@ -35,9 +35,13 @@ const client = new tmi.client({
     connection: {
         reconnect: true
     },
-    identity,
+    identity: id,
     channels: ["firesetter"],
 });
+client.on("connecting", console.log);
+client.on("join", () => client.say("firesetter", "yo dawg, connected bro").catch(console.error));
+
+client.on("disconnected", console.error);
 
 client.on('message', (channel, user, message, self) => {
     if (message[0] !== "!") {
@@ -55,6 +59,27 @@ client.on('message', (channel, user, message, self) => {
         case '!request':
             console.log("Request SUCCESS!!");
             voteLog = [...voteLog, {trackid, upvote}];
+            break;
+        case '!xkcd':
+            console.log("xkcd");
+            parsedMessage.shift();
+            const args = parsedMessage.join('%20');
+            console.log(args);
+            console.log(`http://localhost:3000/api/xkcd-proxy/${args}`);
+            axios.get(`http://localhost:3000/api/xkcd-proxy/${args}`)
+                .then(res => {
+                    client.say("firesetter", `${res.safe_title}, ${res.site}`)
+                        .catch(console.error);
+                    console.log(res);
+                })
+                .catch(console.error);
+
+            // axios.get(`http://www.google.com/search?q=xkcd%20${args}&btnI`)
+            // .then(res => {
+            //     console.log(res)
+            //     })
+            // .catch(err => console.log("Error: " + err));
+            // client.say("channel", "Your message");
             break;
         default:
             break;

@@ -2,7 +2,7 @@
     --cyan-materialdesign-500:  #00BCD4;
     --cyan-materialdesign-50:   #E0F7FA;
     --cyan-materialdesign-800:  #00838F;   
-    --blue-materialdesign-A200: #FF6E40;
+    --green-materialdesign-A400: #00E676;
 }
 
 html, body, div, span, object, iframe,
@@ -23,10 +23,14 @@ time, mark, audio, video, main {
 }
 
 html, body {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
+
     background: var(--cyan-materialdesign-50);
+}
+
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 ul, ol {

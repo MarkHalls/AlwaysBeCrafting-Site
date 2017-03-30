@@ -2,8 +2,7 @@
 <title>AlwaysBeCrafting</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<link rel="stylesheet" href="styles/default.css">
-<link rel="stylesheet" href="styles/player.css">
+<link rel="stylesheet" href="styles/music.css">
 
 <header>
     <nav class="header-nav">
@@ -15,23 +14,32 @@
     </nav> 
 </header>
 <main>
-    <p class="audio-json"></p>
-    <audio class="audio" src="http://localhost:3000/songs/">Your browser does not support the <code>audio</code> element.</audio>
-    <img class="album-art" src="http://localhost:3000/tracks/id/picture" />
-    <ol class="player-menu">
-        <li><button class="player-buttons previous"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path fill="none" stroke="#000" d="M28 8l-12 8 12 8zM16 8v16L4 16z" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg></li>
-        <li><button class="player-buttons play"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path fill="none" stroke="#000" d="M10 8v16l12-8z" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg></li>
-        <li><button class="player-buttons pause"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path fill="none" stroke="#000" d="M19 8h3v16h-3zM13 8h-3v16h3z" stroke-linecap="round" stroke-linejoin="round">
-            </svg></li>
-        <li><button class="player-buttons next"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path fill="none" stroke="#000" d="M16 8l12 8-12 8V8zM4 8l12 8-12 8z" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></li>
-    </ol>
+    <div class="history">
+        <label class="history"><input list="history" name="myHistory" />History</label>
+        <datalist id="history" class="history">
+            <option value="test1">test1</option>
+            <option value="test2">test2</option>
+        </datalist>
+    </div>
+    <div class="player">
+        <p class="audio-json"></p>
+        <audio class="audio" src="http://localhost:3000/songs/">Your browser does not support the <code>audio</code> element.</audio>
+        <img class="album-art" src="http://localhost:3000/tracks/id/picture" />
+        <ol class="player-menu">
+            <li><button class="player-buttons previous"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <path fill="none" stroke="#000" d="M28 8l-12 8 12 8zM16 8v16L4 16z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg></li>
+            <li><button class="player-buttons play"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <path fill="none" stroke="#000" d="M10 8v16l12-8z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg></li>
+            <li><button class="player-buttons pause"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <path fill="none" stroke="#000" d="M19 8h3v16h-3zM13 8h-3v16h3z" stroke-linecap="round" stroke-linejoin="round">
+                </svg></li>
+            <li><button class="player-buttons next"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <path fill="none" stroke="#000" d="M16 8l12 8-12 8V8zM4 8l12 8-12 8z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg></li>
+        </ol>
+    </div>
 </main>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="oauth.json"></script>
