@@ -1,6 +1,3 @@
-const oauth = () => JSON.parse(token);
-const id = oauth();
-
 let chatLog = [];
 let voteLog = [];
 window.setInterval(() => {
@@ -35,7 +32,7 @@ const client = new tmi.client({
     connection: {
         reconnect: true
     },
-    identity: id,
+    identity: token, 
     channels: ["firesetter"],
 });
 client.on("connecting", console.log);
@@ -68,9 +65,9 @@ client.on('message', (channel, user, message, self) => {
             console.log(`http://localhost:3000/api/xkcd-proxy/${args}`);
             axios.get(`http://localhost:3000/api/xkcd-proxy/${args}`)
                 .then(res => {
-                    client.say("firesetter", `${res.safe_title}, ${res.site}`)
-                        .catch(console.error);
                     console.log(res);
+                    client.say("firesetter", `${res.data.safe_title}, ${res.data.site}`)
+                        .catch(console.error);
                 })
                 .catch(console.error);
 
