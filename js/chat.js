@@ -1,5 +1,6 @@
 let chatLog = [];
 let voteLog = [];
+
 window.setInterval(() => {
     console.log("interval fired");
     if (typeof chatLog !== "undefined" && chatLog.length > 0) {
@@ -36,13 +37,11 @@ const client = new tmi.client({
     channels: ["firesetter"],
 });
 client.on("connecting", console.log);
-client.on("join", () => client.say("firesetter", "yo dawg, connected bro").catch(console.error));
 
 client.on("disconnected", console.error);
 
 client.on('message', (channel, user, message, self) => {
-    if (message[0] !== "!") {
-        console.log("logged chat");
+    if (message[0] !== "!" && user.username !== token.username) {
         chatLog = [...chatLog, {timestamp: user["tmi-sent-ts"], user: user.username, message}];
     }
     const parsedMessage = message.trim().split(/\s+/);
@@ -51,7 +50,6 @@ client.on('message', (channel, user, message, self) => {
             console.log("Veto SUCCESS!!");
             voteLog = [...voteLog, {trackid, downvote}];
             next();
-
             break;
         case '!request':
             console.log("Request SUCCESS!!");
@@ -66,22 +64,34 @@ client.on('message', (channel, user, message, self) => {
             axios.get(`http://localhost:3000/api/xkcd-proxy/${args}`)
                 .then(res => {
                     console.log(res);
-                    client.say("firesetter", `${res.data.safe_title}, ${res.data.site}`)
+                    client.say(channel, `${res.data.safe_title}, ${res.data.site}`)
                         .catch(console.error);
                 })
                 .catch(console.error);
-
-            // axios.get(`http://www.google.com/search?q=xkcd%20${args}&btnI`)
-            // .then(res => {
-            //     console.log(res)
-            //     })
-            // .catch(err => console.log("Error: " + err));
-            // client.say("channel", "Your message");
+            break;
+        case '!uptime':
+            console.log(channel.replace("#", ""));
+            axios.request({
+               url: `https://api.twitch.tv/kraken/streams/${channel.replace("#", "")}`, 
+               method: "get",
+               headers: {"Accept": "application/vnd.twitchtv.v3+json",
+                    "Client-ID": "vf9xv00vgz9ev65qvsk8suupgot5fr"}
+            })
+                .then(res => {
+                    if(res.data.stream) {
+                        console.log(res.data.stream);
+                        const uptime = Date.now() - new Date(res.data.stream.created_at);
+                        const hours = Math.floor(uptime / 1000 / 60 / 60 );
+                        const min = Math.floor(uptime / 1000 / 60 % 60);
+                        const sec = Math.floor(uptime / 1000 % 60);
+                        client.say(channel, `Uptime: ${hours}:${("0" + min).slice(-2)}:${("0" + sec).slice(-2)}`);
+                    }
+                })
+                .catch(console.error);
             break;
         default:
             break;
     }
 });
 
-// Connect the client to the server..
 client.connect();
