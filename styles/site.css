@@ -63,23 +63,26 @@ li {
     align-items: center;
     text-decoration: none;
     color: rgba(0,0,0,0.6);
-    /*color: var(--blue-materialdesign-A200);*/
 }                  
-
-.nav-link.live {
-    margin-left: auto;
-    margin-right: 1em;
-}
 
 .current-page a {
     color: black;
 }
 
-.live a::before {
+.stream {
+    margin-left: auto;
+    margin-right: 1em;
+}
+
+.stream-status::before {
     margin-right: .2em;
     content: ' ';
 	width: 16px;
 	height: 16px;
-	background: red;
+	background: dimgrey;
 	border-radius: 50%;
+}
+
+.stream-status.live::before {
+	background: red;
 }

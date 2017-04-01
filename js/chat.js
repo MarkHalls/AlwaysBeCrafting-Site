@@ -35,7 +35,7 @@ const client = new tmi.client({
         reconnect: true
     },
     identity: token, 
-    channels: ["firesetter"],
+    channels: [config.channel],
 });
 client.on("connecting", console.log);
 

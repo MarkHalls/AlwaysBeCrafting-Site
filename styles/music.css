@@ -19,7 +19,7 @@ main {
 }
 
 .history input {
-    outline: solid thin red;
+    outline: solid thin black;
     margin-right: 6px;
 }
 
@@ -38,7 +38,7 @@ main {
 
 
 .player-buttons {
-    background-color: var(--cyan-materialdesign-50);
+    background-color: rgba(0,0,0,0);
     border: 0;
     padding: 0;
 }
