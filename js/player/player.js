@@ -3,18 +3,18 @@ import axios from 'axios';
 const audioElem = document.querySelector('.js-audio');
 const playButton = document.querySelector('.js-play');
 
-const randomTrack = () => axios.get('http://localhost:3000/api/songs/random')
+const setRandomTrack = () => axios.get('http://localhost:3000/api/songs/random')
     .then(res => res.json())
     .then((json) => {
       document.querySelector('.player-json').textContent = JSON.stringify(json);
       audioElem.src = `http://localhost:3000/api/songs/${json.id}`;
     });
 
-const next = () => {
+const setNextTrack = () => {
   if (!audioElem.paused) {
-    randomTrack().then(() => audioElem.play());
+    setRandomTrack().then(() => audioElem.play());
   } else {
-    randomTrack();
+    setRandomTrack();
   }
 };
 
@@ -25,7 +25,7 @@ const listenerInit = () => {
   });
 
   audioElem.addEventListener('ended', () => {
-    randomTrack();
+    setRandomTrack();
     audioElem.play();
   });
 
@@ -43,9 +43,9 @@ const listenerInit = () => {
 
   document.querySelector('.js-next').addEventListener('click', () => {
     if (!audioElem.paused) {
-      randomTrack().then(() => audioElem.play());
+      setRandomTrack().then(() => audioElem.play());
     } else {
-      randomTrack();
+      setRandomTrack();
     }
   });
 };
@@ -55,8 +55,8 @@ export default {
   audioElem,
   playButton,
   listenerInit,
-  randomTrack,
-  next,
+  setRandomTrack,
+  setNextTrack,
 
 
 };
