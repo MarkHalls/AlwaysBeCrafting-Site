@@ -16,10 +16,10 @@ module.exports = {
       template: path.resolve('index.html'),
       chunks: ['vendor', 'index'],
     }),
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve('music.html'),
-    //   chunks: ['music'],
-    // }),
+    new HtmlWebpackPlugin({
+      template: path.resolve('music.html'),
+      chunks: ['vendor', 'music'],
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: module =>

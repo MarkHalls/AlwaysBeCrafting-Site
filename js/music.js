@@ -1,6 +1,10 @@
 import chat from './twitch/chat';
 import player from './player/player';
+import setStreamStatus from './twitch/stream-status';
 
+setStreamStatus();
+player();
+chat();
 
 /*
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

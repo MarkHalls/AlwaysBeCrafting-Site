@@ -1,54 +1,62 @@
-const audio = document.querySelectorAll('.audio')[0];
-const play = document.querySelectorAll('.play')[0];
+import axios from 'axios';
 
-const randomTrack = () => window.fetch('http://localhost:3000/api/songs/random')
+const audioElem = document.querySelector('.js-audio');
+const playButton = document.querySelector('.js-play');
+
+const randomTrack = () => axios.get('http://localhost:3000/api/songs/random')
     .then(res => res.json())
     .then((json) => {
-      document.querySelectorAll('.audio-json')[0].textContent = JSON.stringify(json);
-      audio.src = `http://localhost:3000/api/songs/${json.id}`;
+      document.querySelector('.player-json').textContent = JSON.stringify(json);
+      audioElem.src = `http://localhost:3000/api/songs/${json.id}`;
     });
 
-audio.addEventListener('playing', (...args) => {
-  play.classList.add('active');
-  console.log(args);
-});
-
-audio.addEventListener('ended', () => {
-  randomTrack();
-  audio.play();
-});
-
-audio.addEventListener('pause', () => {
-  play.classList.remove('active');
-});
-
-play.addEventListener('click', () => {
-  if (audio.paused && audio.canplay) { audio.play(); } else if (audio.paused) {
-    audio.addEventListener('canplay', audio.play());
-  }
-});
-
-document.querySelectorAll('.pause')[0].addEventListener('click', () => audio.pause());
-
-document.querySelectorAll('.next')[0].addEventListener('click', () => {
-  if (!audio.paused) {
-    randomTrack().then(() => audio.play());
-  } else {
-    randomTrack();
-  }
-});
-
 const next = () => {
-  if (!audio.paused) {
-    randomTrack().then(() => audio.play());
+  if (!audioElem.paused) {
+    randomTrack().then(() => audioElem.play());
   } else {
     randomTrack();
   }
 };
 
-window.fetch('http://localhost:3000/api/songs/random')
-    .then(res => res.json())
-    .then((json) => {
-      document.querySelectorAll('.audio-json')[0].textContent = JSON.stringify(json);
-      audio.src = `http://localhost:3000/api/songs/${json.id}`;
-    });
+const listenerInit = () => {
+  audioElem.addEventListener('playing', (...args) => {
+    playButton.classList.add('is-active');
+    console.log(args);
+  });
+
+  audioElem.addEventListener('ended', () => {
+    randomTrack();
+    audioElem.play();
+  });
+
+  audioElem.addEventListener('pause', () => {
+    playButton.classList.remove('is-active');
+  });
+
+  playButton.addEventListener('click', () => {
+    if (audioElem.paused && audioElem.canplay) { audioElem.play(); } else if (audioElem.paused) {
+      audioElem.addEventListener('canplay', audioElem.play());
+    }
+  });
+
+  document.querySelector('.js-pause').addEventListener('click', () => audioElem.pause());
+
+  document.querySelector('.js-next').addEventListener('click', () => {
+    if (!audioElem.paused) {
+      randomTrack().then(() => audioElem.play());
+    } else {
+      randomTrack();
+    }
+  });
+};
+
+
+export default {
+  audioElem,
+  playButton,
+  listenerInit,
+  randomTrack,
+  next,
+
+
+};
