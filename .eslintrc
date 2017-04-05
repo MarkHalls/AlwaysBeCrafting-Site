@@ -1,0 +1,8 @@
+{
+"env": { "browser": true },
+"extends": "airbnb-base",
+"rules": {
+  "no-console":"off",
+  "no-use-before-define": ["warn", { "functions": false, "variables": true}]
+  }
+}
