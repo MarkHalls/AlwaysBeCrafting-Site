@@ -1,7 +1,7 @@
 import krakenApi from './twitchapi';
 
 const setStreamStatus = () => {
-  krakenApi.streamStatus()
+  krakenApi.getStreamData()
     .then((data) => {
       const stream = document.querySelectorAll('.stream-status')[0];
       if (data.stream) {

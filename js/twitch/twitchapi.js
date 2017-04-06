@@ -14,8 +14,8 @@ const json = url => (
 );
 
 const endpoints = {
-  streamStatus() {
-    return json(`/streams/${config.channel}`);
+  getStreamsChannel(channel) {
+    return json(`/streams/${channel}`);
   },
 };
 

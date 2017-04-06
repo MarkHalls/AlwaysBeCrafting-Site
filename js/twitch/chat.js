@@ -1,59 +1,72 @@
 import axios from 'axios';
 import tmi from 'tmi.js';
+import config from '../../config.json';
+import commands from './commands';
+import oauth from '../../oauth.json';
 
-let chatLog = [];
-let voteLog = [];
+const logs = {
+  chatLog: [],
+  voteLog: [],
+};
 
-window.setInterval(() => {
-  console.log('interval fired');
-  if (typeof chatLog !== 'undefined' && chatLog.length > 0) {
-    axios.post('http://localhost:3000/api/chat', {
-      data: chatLog,
-    })
-    .then((res) => {
-      chatLog = [];
-      console.log(res.data);
-    })
-    .catch(console.error);
-  }
-  if (typeof voteLog !== 'undefined' && voteLog.length > 0) {
-    axios.post('http://localhost:3000/api/vote', {
-      data: voteLog,
-    })
-    .then((res) => {
-      voteLog = [];
-      console.log(res.data);
-    })
-    .catch(console.error);
-  }
-},
-30000);
+const initLogger = () => {
+  window.setInterval(() => {
+    console.log('interval fired');
+    if (typeof logs.chatLog !== 'undefined' && logs.chatLog.length > 0) {
+      axios.post('http://localhost:3000/api/chat', {
+        data: logs.chatLog,
+      })
+      .then((res) => {
+        logs.chatLog = [];
+        console.log(res.data);
+      })
+      .catch(console.error);
+    }
+    if (typeof logs.voteLog !== 'undefined' && logs.voteLog.length > 0) {
+      axios.post('http://localhost:3000/api/vote', {
+        data: logs.voteLog,
+      })
+      .then((res) => {
+        logs.voteLog = [];
+        console.log(res.data);
+      })
+      .catch(console.error);
+    }
+  },
+  30000);
+};
 
-const client = new tmi.client({
+const initClient = new tmi.client({
   options: {
     debug: true,
   },
   connection: {
     reconnect: true,
   },
-  identity: token,
+  identity: oauth,
   channels: [config.channel],
 });
-client.on('connecting', console.log);
 
-client.on('disconnected', console.error);
+const initListeners = (client) => {
+  client.on('connecting', console.log);
 
-client.on('message', (channel, user, message, self) => {
-  if (user.username === token.username) { return; }
-  if (message[0] !== '!') {
-    chatLog = [...chatLog, { timestamp: user['tmi-sent-ts'], user: user.username, message }];
-  } else {
-    const splitMessage = message.trim().split(/\s+/);
-    const commandName = splitMessage.shift().replace('!', '');
-    const command = commands[commandName];
-    command(splitMessage, channel);
-  }
-});
+  client.on('disconnected', console.error);
 
-client.connect();
+  client.on('message', (channel, user, message, self) => {
+    if (user.username === oauth.username) { return; }
+    if (message[0] !== '!') {
+      logs.chatLog = commands.logChat(logs.chatLog, user['tmi-sent-ts'], user.username, message);
+    } else {
+      const splitMessage = message.trim().split(/\s+/);
+      const commandName = splitMessage.shift().replace('!', '');
+      const command = commands[commandName];
+      command(splitMessage, channel, client);
+    }
+  });
+};
 
+export default {
+  initClient,
+  initLogger,
+  initListeners,
+};
