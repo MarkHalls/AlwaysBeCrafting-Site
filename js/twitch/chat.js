@@ -1,15 +1,30 @@
 import axios from 'axios';
-import tmi from 'tmi.js';
+import { client as TmiClient } from 'tmi.js';
 import config from '../../config.json';
 import commands from './commands';
 import oauth from '../../oauth.json';
 
-const logs = {
-  chatLog: [],
-  voteLog: [],
+const handlers = [
+  loggingHandler(),
+  commandHandler()
+];
+
+const chat = (client) => {
+  client.on('connecting', console.log);
+
+  client.on('disconnected', console.error);
+
+  client.on('message', (channel, user, message) => {
+    if (user.username === oauth.username) { return; }
+    handlers.forEach((handler) => {
+      const response = handler(channel, user, message);
+      if (response) {
+        client.say(channel, response);
+      }
+    });
+  });
 };
 
-const initLogger = () => {
   window.setInterval(() => {
     console.log('interval fired');
     if (typeof logs.chatLog !== 'undefined' && logs.chatLog.length > 0) {
@@ -36,7 +51,7 @@ const initLogger = () => {
   30000);
 };
 
-const initClient = new tmi.client({
+const client = new TmiClient({
   options: {
     debug: true,
   },
@@ -47,26 +62,8 @@ const initClient = new tmi.client({
   channels: [config.channel],
 });
 
-const initListeners = (client) => {
-  client.on('connecting', console.log);
-
-  client.on('disconnected', console.error);
-
-  client.on('message', (channel, user, message, self) => {
-    if (user.username === oauth.username) { return; }
-    if (message[0] !== '!') {
-      logs.chatLog = commands.logChat(logs.chatLog, user['tmi-sent-ts'], user.username, message);
-    } else {
-      const splitMessage = message.trim().split(/\s+/);
-      const commandName = splitMessage.shift().replace('!', '');
-      const command = commands[commandName];
-      command(splitMessage, channel, client);
-    }
-  });
-};
 
 export default {
+  chat,
   initClient,
-  initLogger,
-  initListeners,
 };
