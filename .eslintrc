@@ -1,9 +1,14 @@
 {
   "env": { "browser": true },
   "extends": "airbnb-base",
-  "rules": {
+	"rules": {
     "no-console":"off",
     "no-use-before-define": ["warn", { "functions": false, "variables": true}],
-    "consistent-return":"off"
-    }
+    "consistent-return":"off",
+    "indent": ["error", "tab"],
+    "no-tabs": "off"
+    },
+	"settings": {
+		"import/resolver": "webpack"
+	}
 }
