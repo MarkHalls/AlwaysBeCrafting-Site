@@ -22,13 +22,13 @@ const commands = {
 	uptime: async channel => (
 		kraken.getStreamsChannel(channel.replace('#', ''))
 			.then((res) => {
-				if (!res.data.stream) { return; }
-				console.log(res.data.stream);
-				const uptime = Date.now() - new Date(res.data.stream.created_at);
+				if (!res.stream) { return; }
+				console.log(res.stream);
+				const uptime = Date.now() - new Date(res.stream.created_at);
 				const hours = Math.floor(uptime / 1000 / 60 / 60);
 				const min = Math.floor((uptime / 1000 / 60) % 60);
 				const sec = Math.floor((uptime / 1000) % 60);
-				return ` 🤖Uptime: ${hours}:${(`0${min}`).slice(-2)}:${(`0${sec}`).slice(-2)}`;
+				return `🤖 Uptime: ${hours}:${(`0${min}`).slice(-2)}:${(`0${sec}`).slice(-2)}`;
 			})
 			.catch(console.error)
 	),
