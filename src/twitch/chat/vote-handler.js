@@ -1,10 +1,13 @@
+import apiPost from 'api/api-post';
+
 const messageVoteHandler = () => {
 	const voteLog = [];
-	return (trackID, upvote, downvote, clearLog) => {
-		if (clearLog === true) {
-			voteLog.length = 0;
-			return;
+	window.setInterval(() => {
+		if (typeof voteLog !== 'undefined' && voteLog.length > 0) {
+			apiPost([...voteLog]);
 		}
+	});
+	return (trackID, upvote, downvote) => {
 		if (trackID < 1) { return; }
 		voteLog.push({ track_id: trackID, upvote, downvote });
 	};

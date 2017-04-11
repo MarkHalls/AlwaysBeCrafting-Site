@@ -6,5 +6,4 @@ setStreamStatus(config.twitch.channel);
 
 const client = chat.newClient();
 chat.initListeners(client);
-chat.setLoggingPostInterval();
 client.connect();

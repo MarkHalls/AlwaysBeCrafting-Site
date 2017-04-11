@@ -1,6 +1,10 @@
 {
   "twitch": {
-    "channel": "alwaysbecrafting",
+    "channel": "firesetter",
     "client_id": "vf9xv00vgz9ev65qvsk8suupgot5fr"
-    }
+    },
+	"api": {
+		"server": "127.0.0.1",
+		"port": "3000"
+	}
 }

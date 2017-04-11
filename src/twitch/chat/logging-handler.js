@@ -1,12 +1,17 @@
+import apiPost from 'api/api-post';
+
 const messageLoggingHandler = () => {
 	const chatLog = [];
-	return (channel, user, message, clearLog) => {
-		if (clearLog === true) {
+	window.setInterval(() => {
+		console.log('interval fired');
+		if (typeof chatLog !== 'undefined' && chatLog.length > 0) {
+			apiPost.postChatLog([...chatLog]);
 			chatLog.length = 0;
-			return;
 		}
+	}, 3000);
+	return async (channel, user, message) => {
 		if (message[0] === '!') { return; }
-		chatLog.push({ timestamp: user['sent-ts'], username: user.username, message });
+		await chatLog.push({ timestamp: user['sent-ts'], username: user.username, message });
 	};
 };
 

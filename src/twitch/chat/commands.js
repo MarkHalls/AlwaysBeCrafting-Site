@@ -1,5 +1,5 @@
-import axios from 'axios';
 import kraken from 'twitch/twitchapi';
+import apiGet from 'api/api-get';
 // import player from '../player/player';
 
 const commands = {
@@ -13,23 +13,24 @@ const commands = {
   //   return [...voteLog, { trackid, downvote: 'downvote' }];
   // },
 	xkcd: (channel, user, args) => {
+		console.log('command xkcd');
 		const searchString = args.join('%20');
-		axios.get(`http://localhost:3000/api/xkcd-proxy/${searchString}`)
+		return apiGet.getXKCD(searchString)
       .then(res => ` 🤖 ${res.data.safe_title}, ${res.data.site}`)
       .catch(console.error);
 	},
-	uptime: channel => (
+	uptime: async channel => (
 		kraken.getStreamsChannel(channel.replace('#', ''))
-    .then((res) => {
-			if (!res.data.stream) { return; }
-			console.log(res.data.stream);
-			const uptime = Date.now() - new Date(res.data.stream.created_at);
-			const hours = Math.floor(uptime / 1000 / 60 / 60);
-			const min = Math.floor((uptime / 1000 / 60) % 60);
-			const sec = Math.floor((uptime / 1000) % 60);
-			return ` 🤖Uptime: ${hours}:${(`0${min}`).slice(-2)}:${(`0${sec}`).slice(-2)}`;
-		})
-		.catch(console.error)
+			.then((res) => {
+				if (!res.data.stream) { return; }
+				console.log(res.data.stream);
+				const uptime = Date.now() - new Date(res.data.stream.created_at);
+				const hours = Math.floor(uptime / 1000 / 60 / 60);
+				const min = Math.floor((uptime / 1000 / 60) % 60);
+				const sec = Math.floor((uptime / 1000) % 60);
+				return ` 🤖Uptime: ${hours}:${(`0${min}`).slice(-2)}:${(`0${sec}`).slice(-2)}`;
+			})
+			.catch(console.error)
 	),
 };
 export default commands;
