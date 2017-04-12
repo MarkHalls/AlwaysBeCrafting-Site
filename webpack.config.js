@@ -11,6 +11,12 @@ module.exports = {
 		filename: 'js/[name].[chunkhash].js',
 		path: path.resolve(__dirname, 'dist'),
 	},
+	module: {
+		rules: [{
+			test: /\.js$/,
+			loader: 'babel-loader',
+		}],
+	},
 	resolve: {
 		modules: [
 			path.resolve(__dirname, './src'),
