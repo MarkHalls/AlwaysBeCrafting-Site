@@ -4,19 +4,18 @@ import config from 'config.json';
 const BASE_URL = 'https://api.twitch.tv/kraken';
 const API_VERSION = '5';
 const headers = {
-	Accept: 'application/vnd.twitchtv.v5+json',
-	'Client-ID': 'vf9xv00vgz9ev65qvsk8suupgot5fr',
+	Accept: `application/vnd.twitchtv.v${API_VERSION}+json`,
+	'Client-ID': `${config.twitch.client_id}`,
 };
 
 const json = url => (
   axios
-  .request(
-	{
-		url: BASE_URL + url,
-		method: 'get',
-		headers,
-	})
-    .then(r => r.data)
+		.request({
+			url: BASE_URL + url,
+			method: 'get',
+			headers,
+		})
+			.then(r => r.data)
 );
 
 const usernameToID = name => (
@@ -35,5 +34,3 @@ const endpoints = {
 };
 
 export default endpoints;
-
-			// Accept: `application/vnd.twitchtv.v${API_VERSION}+json`,
