@@ -11,7 +11,7 @@ const messageLoggingHandler = () => {
 	}, 3000);
 	return async (channel, user, message) => {
 		if (message[0] === '!') { return; }
-		await chatLog.push({ timestamp: user['sent-ts'], username: user.username, message });
+		chatLog.push({ timestamp: user['sent-ts'], username: user.username, message });
 	};
 };
 

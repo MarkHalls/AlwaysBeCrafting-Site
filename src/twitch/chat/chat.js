@@ -21,11 +21,11 @@ const initListeners = (client) => {
 		if (self)	return;
 
 		Promise.all(
-			handlers.map(handler => handler(channel, user, message))
+			handlers.map(handler => handler(channel, user, message)),
 		).then(responses => (
 			responses
 				.filter(a => a)
-				.forEach(response => client.say(channel, response)))
+				.forEach(response => client.say(channel, response))),
 		);
 	});
 };

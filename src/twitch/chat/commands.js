@@ -15,11 +15,12 @@ const commands = {
 	xkcd: (channel, user, args) => {
 		console.log('command xkcd');
 		const searchString = args.join('%20');
+		console.log(searchString);
 		return apiGet.getXKCD(searchString)
-      .then(res => ` 🤖 ${res.data.safe_title}, ${res.data.site}`)
+      .then(res => `🤖 ${res.data.safe_title}, ${res.data.site}`)
       .catch(console.error);
 	},
-	uptime: async channel => (
+	uptime: channel => (
 		kraken.getStreamsChannel(channel.replace('#', ''))
 			.then((res) => {
 				if (!res.stream) { return; }

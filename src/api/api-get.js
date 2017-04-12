@@ -2,28 +2,24 @@ import axios from 'axios';
 import config from 'config.json';
 
 const getAllPlaylists = () => {
-	axios.get(`http://${config.api.server}:${config.api.port}/playlists`)
-		.then(console.log);
+	return axios.get(`http://${config.api.server}:${config.api.port}/api/playlists`);
 };
 
 const getPlaylist = (playlistID) => {
-	axios.get(`http://${config.api.server}:${config.api.port}/playlists/${playlistID}`)
-		.then(console.log);
+	return axios.get(`http://${config.api.server}:${config.api.port}/api/playlists/${playlistID}`);
 };
 
 const getRandomTrack = () => {
-	axios.get(`http://${config.api.server}:${config.api.port}/songs/random`)
-		.then(console.log);
+	return axios.get(`http://${config.api.server}:${config.api.port}/api/songs/random`);
 };
 
 const getSongByID = (songID) => {
-	axios.get(`http://${config.api.server}:${config.api.port}/songs/${songID}`)
-		.then(console.log);
+	return axios.get(`http://${config.api.server}:${config.api.port}/api/songs/${songID}`);
 };
 
 const getXKCD = (searchString) => {
 	console.log('xkcd');
-	axios.get(`http://${config.api.server}:${config.api.port}/xkcd-proxy/${searchString}`);
+	return axios.get(`http://${config.api.server}:${config.api.port}/api/xkcd-proxy/${searchString}`);
 };
 
 export default {
