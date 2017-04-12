@@ -28,7 +28,7 @@ const commands = {
 				const hours = Math.floor(uptime / 1000 / 60 / 60);
 				const min = Math.floor((uptime / 1000 / 60) % 60);
 				const sec = Math.floor((uptime / 1000) % 60);
-				return `🤖 Uptime: ${hours}:${(`0${min}`).slice(-2)}:${(`0${sec}`).slice(-2)}`;
+				return `🤖 ⬆🕑 ${hours}:${(`0${min}`).slice(-2)}:${(`0${sec}`).slice(-2)}`;
 			})
 			.catch(console.error)
 	),
