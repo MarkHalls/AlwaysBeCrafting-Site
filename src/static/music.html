@@ -11,7 +11,7 @@
             <li class="nav-link current-page"><a href="music.html">Music</a></li>
             <li class="nav-link stream"><a class="stream-status" href="https://twitch.tv/alwaysbecrafting" target="_blank">Offline</a></li>
         </ul>
-    </nav> 
+    </nav>
 </header>
 <main>
     <div class="history">
@@ -22,32 +22,24 @@
         </datalist>
     </div>
     <div class="player">
-        <p class="audio-json"></p>
-        <audio class="audio" src="http://localhost:3000/songs/">Your browser does not support the <code>audio</code> element.</audio>
-        <img class="album-art" src="http://localhost:3000/tracks/id/picture" />
+        <p class="player-json"></p>
+        <audio class="player-audio js-audio" src="http://localhost:3000/songs/">Your browser does not support the <code>audio</code> element.</audio>
+        <img class="player-art" src="http://localhost:3000/tracks/id/picture" />
         <ol class="player-menu">
-            <li><button class="player-buttons previous"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+            <li><button class="player-menu-button js-previous"><svg class="player-menu-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                 <path fill="none" stroke="#000" d="M28 8l-12 8 12 8zM16 8v16L4 16z" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg></li>
-            <li><button class="player-buttons play"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+            <li><button class="player-menu-button js-play"><svg class="player-menu-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                 <path fill="none" stroke="#000" d="M10 8v16l12-8z" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg></li>
-            <li><button class="player-buttons pause"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+            <li><button class="player-menu-button js-pause"><svg class="player-menu-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                 <path fill="none" stroke="#000" d="M19 8h3v16h-3zM13 8h-3v16h3z" stroke-linecap="round" stroke-linejoin="round">
                 </svg></li>
-            <li><button class="player-buttons next"><svg class="player-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+            <li><button class="player-menu-button js-next"><svg class="player-menu-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                 <path fill="none" stroke="#000" d="M16 8l12 8-12 8V8zM4 8l12 8-12 8z" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg></li>
         </ol>
     </div>
 </main>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="oauth.js"></script>
-<script src="https://cdn.tmijs.org/js/1.1.2/tmi.min.js" integrity="sha384-GONdkSqsv77zHY1cs3aAZoQJP/9wq2YBmES4prk2ZG1rUvrv3IKLFRbHqk/0CR1b" crossorigin="anonymous"></script>
-<script src="./js/config.js"></script>
-<script src="./js/twitchapi.js"></script>
-<script src="./js/stream-status.js"></script>
-<script src="./js/commands.js"></script>
-<script src="./js/chat.js"></script>
-<script src="./js/player.js"></script>
+
 

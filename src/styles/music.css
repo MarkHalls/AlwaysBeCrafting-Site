@@ -3,7 +3,7 @@
 main {
     --cyan-materialdesign-500:  #00BCD4;
     --cyan-materialdesign-50:   #E0F7FA;
-    --cyan-materialdesign-800:  #00838F;   
+    --cyan-materialdesign-800:  #00838F;
     --green-materialdesign-A400: #00E676;
     padding: 0 25% 0 25%;
     display: flex;
@@ -37,27 +37,27 @@ main {
 }
 
 
-.player-buttons {
+.player-menu-button {
     background-color: rgba(0,0,0,0);
     border: 0;
     padding: 0;
 }
 
-.player-buttons:active {
+.player-menu-button:active {
     background-color: var(--cyan-materialdesign-500);
 }
 
-.player-buttons:focus {
+.player-menu-button:focus {
     outline: none;
 }
 
-.player-icons, .player-icons path{
+.player-menu-button-icon, .player-menu-button-icon path{
     width: 32px;
     height: 32px;
     stroke-width: 1px;
     stroke: var(--cyan-materialdesign-800);
 }
 
-.player-buttons.active path {
+.player-menu-button-icon.is-active path {
     stroke: var(--green-materialdesign-A400);
 }
